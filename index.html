@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Pratyush</title>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #64ffda;
+            --bg: #0a192f;
+            --bg-light: #112240;
+            --text: #8892b0;
+            --text-light: #ccd6f6;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(10, 25, 47, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 1px;
+            background-color: var(--text);
+            margin-left: 20px;
+            opacity: 0.2;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .hero-intro {
+            color: var(--primary);
+            font-family: monospace;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            color: var(--text-light);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 3rem;
+            color: var(--text);
+            margin-bottom: 30px;
+        }
+
+        .hero-desc {
+            max-width: 500px;
+            margin-bottom: 50px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-family: monospace;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 255, 136, 0.1);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--text);
+            color: var(--text-light);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .tech-stack li {
+            list-style: none;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .tech-stack li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* Projects Section */
+        .project-card {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .folder-icon {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .project-title {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 15px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            margin-top: 20px;
+            color: var(--text);
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 2rem; }
+            nav { padding: 20px; }
+            .nav-links { display: none; } 
+            .about-content { grid-template-columns: 1fr; }
+            .btn-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">&lt;Pratyush /&gt;</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero">
+        <p class="hero-intro">Hi, my name is</p>
+        <h1 class="hero-title">Pratyush.</h1>
+        <h2 class="hero-subtitle">I build things for the web & embedded systems.</h2>
+        <p class="hero-desc">
+            I'm a First-Year B.Tech student based in Dehradun/NCR, specializing in C, Python, and Web Development. 
+            Currently exploring the intersection of software and hardware while mastering the Arch Linux environment.
+        </p>
+        <div class="btn-container">
+            <a href="https://github.com/cryptogenz" target="_blank" class="btn">Check out my GitHub</a>
+            <a href="https://www.linkedin.com/in/pratyush-yadav-423b99241/" target="_blank" class="btn btn-secondary">Connect on LinkedIn</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Hello! I'm a passionate engineering student at <strong>KIET</strong> with a keen interest in how things work under the hood. 
+                    My journey started with C programming and has expanded into 3D modeling and cloud computing.
+                </p>
+                <br>
+                <p>
+                    I enjoy optimizing my workflow (I use <strong>Arch Linux</strong> by the way) and solving complex engineering problems.
+                    Currently, I'm diving deep into computer science fundamentals through <strong>Harvard's CS50x</strong>.
+                </p>
+                <br>
+                <p>Here are a few technologies I've been working with recently:</p>
+                <ul class="tech-stack">
+                    <li>C / C++</li>
+                    <li>Python</li>
+                    <li>HTML & CSS</li>
+                    <li>Fusion 360</li>
+                    <li>Arch Linux</li>
+                    <li>AWS (Cloud Practitioner)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <div class="folder-icon">📂</div>
+                <a href="#" style="font-size: 1.2rem;">🔗</a>
+            </div>
+            <h3 class="project-title">Smart Parking System</h3>
+            <p>
+                A Design Thinking project aimed at solving urban congestion. This system utilizes sensors to track parking availability 
+                in real-time, helping optimize traffic flow and reduce parking search time.
+            </p>
+            <div class="project-tech">
+                <span>C++</span>
+                <span>Sensors</span>
+                <span>Design Thinking</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="folder-icon">📂</div>
+                <a href="#" style="font-size: 1.2rem;">🔗</a>
+            </div>
+            <h3 class="project-title">CS50x Finance</h3>
+            <p>
+                A web-based stock trading application allowing users to "buy" and "sell" stocks using real-time data. 
+                Built as part of the CS50x curriculum.
+            </p>
+            <div class="project-tech">
+                <span>Python</span>
+                <span>Flask</span>
+                <span>SQL</span>
+                <span>HTML/CSS</span>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="contact">
+        <p class="hero-intro">What's Next?</p>
+        <h2 style="justify-content: center; margin-left: 0;">Get In Touch</h2>
+        <p style="margin-bottom: 50px;">
+            I am currently looking for opportunities to collaborate on open-source projects or internships. 
+            Whether you have a question about my Arch setup or just want to say hi, my inbox is open!
+        </p>
+        <div class="btn-container" style="justify-content: center;">
+            <a href="mailto:your-email@example.com" class="btn">Say Hello</a>
+            <a href="https://www.linkedin.com/in/pratyush-yadav-423b99241/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Designed & Built by Pratyush</p>
+    </footer>
+
+    <script>
+        // Simple scroll reveal animation
+        const sections = document.querySelectorAll('section');
+
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        console.log("Welcome to Pratyush's Portfolio.");
+    </script>
+</body>
+</html>
